@@ -1,0 +1,50 @@
+*{
+   
+    scroll-behavior: smooth;
+    box-sizing :border-box;
+    
+}
+
+h1,h2,h3,h4{
+    font-family:sans-serif
+}
+header{
+    background-image: url(../media/header.jpg);
+    z-index: -1;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;
+    
+}
+    
+.navbar{
+    background-color: rgba(0, 0, 0, 0.1);
+    width: 100%;
+    transition:.5s;
+}
+.navbar-toggler{
+    color:white!important;
+}
+.nav-link{
+    color:white;
+    transform: .2s;
+    border-radius:5px;
+
+}
+.nav-link:hover{
+    background-color: rgba(0, 0, 0, 0.1);
+    transform:scale(1.1);
+    
+    color:white;
+
+}
+.card
+{
+    margin:20px auto;
+    border:2 px solid black!important;
+    box-shadow: 10px 10px 20px;
+    transition: .5s;
+}
+.card:hover{
+    transform: scale(1.1);
+} 
