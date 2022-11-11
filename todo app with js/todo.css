@@ -1,0 +1,87 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    list-style-type: none;
+    
+    outline: none;
+   
+}
+html{
+    scroll-behavior: smooth;
+}
+.container{
+    width: 100%;
+    height: 100vh;
+    justify-content: center;
+    align-items: center!important;
+    background-color: rgb(79, 82, 82);
+}
+.card{
+    background-color: rgb(228, 196, 196);
+    color: white;
+    min-height: 80vh;
+    padding:1rem;
+    width: 50%;
+    /* overflow: scroll; */
+}
+.card-title{
+    font-size: 2.5rem;
+}
+.card-body{
+    
+    /* overflow: scroll; */
+}
+input{
+    border-radius: 0.6rem;
+    width:80%;
+    padding: 0.5rem;
+    box-shadow: 0.5px;
+    border-color: rgb(122, 174, 219);
+}
+button{
+    border:none;
+    border-radius: 0.6rem;
+    background-color: orange!important;
+    color:white;
+    transition: all 0.3s!important;
+    cursor: pointer;
+    padding:0.5rem;
+}
+.btn:hover{
+    background-color: white!important;
+    color: black !important;;
+}
+#addTodoBtn{
+    width: 18%, !important;
+}
+.li-style{
+    display: flex;
+    justify-content: space-between;
+    align-items:center;
+    background-color: rgb(73, 163, 70);
+    color: white;
+    padding: 0.5rem;
+    margin: 1rem 0;
+    margin-left: -30px;
+    transition:all 0.3s;
+    border-radius: 0.5rem;
+}
+.li-style:hover{
+    background-color:#111 ;
+}
+.bg-success{
+    margin: 0.5rem 0;
+    padding: 0.5rem;
+    color:black;
+    background-color:#ddffdd;
+    border-left: 6px solid #04aa6d;
+}
+.bg-danger{
+    margin: 0.5rem 0;
+    padding: 0.5rem;
+    color:black;
+    background-color:#ffdddd;
+    border-left: 6px solid #a80f04;
+}
