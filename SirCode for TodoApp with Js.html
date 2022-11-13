@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>My Todo </title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+  </head>
+  <body>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-7">
+                <h1 class="m-4 text-center">My Todo App</h1>
+                <form class="bg-warning p-3 rounded">
+                    <div class="mb-3">
+                      <label for="exampleInputtask1" class="form-label">Add Task</label>
+                      <input type="task" class="form-control" id="task" placeholder="add new task..">
+                    </div>
+                    <div id="btn-holder">
+                      <button type="button" class="btn btn-primary" id="todo-btn">+</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-7">
+                <h2 class="m-3 text-center"> My Todos </h2>
+                <table class="table w-100  bg-warning rounded" >
+                    <thead>
+                      <tr>
+                        <th scope="col">Tasks</th>
+                        <th scope="col">Actions</th>
+                      </tr>
+                    </thead>
+                    <tbody id="tbody">
+                      
+                    </tbody>
+                  </table>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+    <script>
+        showTodos();
+        var task = document.querySelector('#task');
+        var todoBtn = document.querySelector('#todo-btn');
+
+        todoBtn.addEventListener('click', function(){
+          if (task.value == '') {
+            alert(' Please Give A Task Name! ');
+          }else{
+            if (localStorage.getItem('todos') == null) {
+                localStorage.setItem('todos','[]');
+                var todos = JSON.parse(localStorage.getItem('todos'));
+                todos.push(task.value);
+                localStorage.setItem('todos',JSON.stringify(todos));
+                showTodos();
+                task.value = '';
+            }else{
+                var todos = JSON.parse(localStorage.getItem('todos'));
+                todos.push(task.value);
+                localStorage.setItem('todos',JSON.stringify(todos));
+                showTodos();
+                task.value = '';
+            }
+          }
+            
+        });
+
+      
+      function deleteTodo(id){
+        if (confirm('Are You Sure to delete This task!')) {
+          var todos = JSON.parse(localStorage.getItem('todos'));
+          todos.splice(id,1);
+          localStorage.setItem('todos',JSON.stringify(todos));
+          showTodos();
+        }
+      }
+      
+      function showTodos() {
+        var todos = JSON.parse(localStorage.getItem('todos'));
+        var display = '';
+        for (todo in todos) {
+          display += `
+            <tr>
+              <td scope="row">
+                  ${ todos[todo] }
+              </td>
+              <td>
+                  <button class="btn btn-primary" onClick="editTodo(${todo})">&#9998;</button>
+                  <button class="btn btn-danger" onClick="deleteTodo(${todo})">-</button>
+              </td>
+            </tr>
+          `;
+        }
+        var tbody = document.querySelector('#tbody'); 
+        tbody.innerHTML = display;
+      }
+
+      function editTodo(id) {
+        task.value = JSON.parse(localStorage.getItem('todos'))[id];
+        var btnHolder = document.querySelector('#btn-holder');
+        btnHolder.innerHTML = `
+          <button class="btn btn-success" onClick="updateTodo(${id})">Update</button>
+        `;
+      }
+
+      function updateTodo(id) {
+        var todos = JSON.parse(localStorage.getItem('todos'));
+          todos[id] = task.value;
+          localStorage.setItem('todos',JSON.stringify(todos));
+          showTodos();
+      }
+
+    </script>
+  </body>
+</html>
